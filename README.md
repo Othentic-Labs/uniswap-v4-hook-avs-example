@@ -94,8 +94,8 @@ Validation Service logic:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Othentic-Labs/avs-examples.git
-   cd avs-examples/uniswap-v4-hook-avs-example
+   git clone https://github.com/Othentic-Labs/uniswap-v4-hook-avs-example.git
+   cd uniswap-v4-hook-avs-example
    ```
 
 2. Install Othentic CLI:
