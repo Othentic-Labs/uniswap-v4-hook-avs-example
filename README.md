@@ -105,7 +105,7 @@ Validation Service logic:
    ```
 
 ## Usage
-1. Create a .env file and include the deployed contract addresses and private keys for the operators. If you are unfamiliar with AVS, Checkout the [Quickstart guide](https://docs.othentic.xyz/main/avs-framework/quick-start).
+1. Create a .env file and include the deployed contract addresses and private keys for the operators. If you are unfamiliar with AVS, Checkout the [Quickstart guide](https://docs.othentic.xyz/main/welcome/getting-started/install-othentic-cli).
 
 2. Deploy the DynamicFeesAvsHook Contract: To use hooks, deploy an instance of the `DynamicFeesAvsHook contract` by navigating to the `contracts` directory. 
 
@@ -134,7 +134,7 @@ docker-compose up --build
 
 ## Usage
 
-Follow the steps in the official documentation's [Quickstart](https://docs.othentic.xyz/main/avs-framework/quick-start#steps) Guide for setup and deployment.
+Follow the steps in the official documentation's [Quickstart](https://docs.othentic.xyz/main/welcome/getting-started/install-othentic-cli) Guide for setup and deployment.
 
 Happy Building! 🚀
 
