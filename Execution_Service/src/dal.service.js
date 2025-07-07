@@ -1,11 +1,13 @@
 require('dotenv').config();
 const pinataSDK = require("@pinata/sdk");
 const { ethers, AbiCoder } = require('ethers');
+const { getSigningKey, sign } = require('./utils/mcl');
 
 var pinataApiKey='';
 var pinataSecretApiKey='';
 var rpcBaseAddress='';
 var privateKey='';
+var performerAddress='';
 
 
 
@@ -14,16 +16,17 @@ function init() {
   pinataSecretApiKey = process.env.PINATA_SECRET_API_KEY;
   rpcBaseAddress = process.env.OTHENTIC_CLIENT_RPC_ADDRESS;
   privateKey = process.env.PRIVATE_KEY_PERFORMER;
+  performerAddress = process.env.PERFORMER_ADDRESS;
 }
 
 async function sendTask(proofOfTask, data, taskDefinitionId) {
 
-  var wallet = new ethers.Wallet(privateKey);
-  var performerAddress = wallet.address;
   data = ethers.AbiCoder.defaultAbiCoder().encode(["uint24"], [data])
   const message = ethers.AbiCoder.defaultAbiCoder().encode(["string", "bytes", "address", "uint16"], [proofOfTask, data, performerAddress, taskDefinitionId]);
   const messageHash = ethers.keccak256(message);
-  const sig = wallet.signingKey.sign(messageHash).serialized;
+  const signingKey = getSigningKey(privateKey);
+  const sig = sign(signingKey, messageHash);
+  const sigType = 'bls';
 
   const jsonRpcBody = {
     jsonrpc: "2.0",
@@ -34,6 +37,7 @@ async function sendTask(proofOfTask, data, taskDefinitionId) {
       taskDefinitionId,
       performerAddress,
       sig,
+      sigType
     ]
   };
     try {
